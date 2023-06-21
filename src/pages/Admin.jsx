@@ -1,33 +1,174 @@
+import { useState, useEffect } from "react";
+
 const Admin = () => {
-    return (
-        <div className="bg-white pb-12 lg:px-20 space-y-6">
-            <div className="w-full flex justify-evenly items-center pt-8">
-                {/* profile picture */}
-                <div className="w-20 h-20 rounded-full flex items-center justify-center shadow-md">
-                    <img src={"/assets/Baby.jpg"} alt="profile img" width={60} className="rounded-full w-12 h-12" />
+  const [ActiveId, setActiveId] = useState(1);
+  const clients = [
+    {
+        id: 1,
+        name: "John Doe",
+        location: "USA",
+        amount: "435USD",
+        email: "johndoe@example.com",
+        loan: "400USD",
+        lent: "508USD",
+        age: 25,
+        gender: "male",
+        imgUrl: "/assets/Seated.jpg"
+    },
+    {
+        id: 2,
+        name: "Jane Smith",
+        location: "Canada",
+        amount: "435USD",
+        email: "janesmith@example.com",
+        loan: "400USD",
+        lent: "508USD",
+        age: 30,
+        gender: "female",
+        imgUrl: "/assets/Baby.jpg"
+    },
+    {
+        id: 3,
+        name: "Mark Johnson",
+        location: "USA",
+        amount: "435USD",
+        email: "markjohnson@example.com",
+        loan: "400USD",
+        lent: "508USD",
+        age: 35,
+        gender: "male",
+        imgUrl: "/assets/Baby.jpg"
+    },
+    {
+        id: 4,
+        name: "Emily Davis",
+        location: "Canada",
+        amount: "435USD",
+        email: "emilydavis@example.com",
+        loan: "400USD",
+        lent: "508USD",
+        age: 28,
+        gender: "female",
+        imgUrl: "/assets/Baby.jpg"
+    },
+    {
+        id: 5,
+        name: "Michael Brown",
+        location: "USA",
+        amount: "435USD",
+        email: "michaelbrown@example.com",
+        loan: "400USD",
+        lent: "508USD",
+        age: 32,
+        gender: "male",
+        imgUrl: "/assets/Baby.jpg"
+    },
+    {
+        id: 6,
+        name: "Sarah Wilson",
+        location: "Canada",
+        amount: "435USD",
+        email: "sarahwilson@example.com",
+        loan: "400USD",
+        lent: "508USD",
+        age: 27,
+        gender: "female",
+        imgUrl: "/assets/Baby.jpg"
+    },
+];
+
+  const showDetails = (id) => {
+    setActiveId(id);
+  };
+  const [data, setData] = useState(clients[1]);
+  useEffect(() => {
+    setData(clients[ActiveId - 1]);
+  }, [ActiveId]);
+  
+  return (
+    <div className="bg-white pb-12">
+      <div className="w-full flex flex-col px-20 md:flex-row md:px-2">
+        {/* clients display */}
+        <div className="basis-1/4 pl-4 space-y-8">
+          <h3 className="pt-4 text-[#07425b] font-semibold">Clients</h3>
+          {/* available clients */}
+          <div className="space-y-2 ">
+            {clients.map((client, index) => {
+              return (
+                <div
+                  key={client.id}
+                  onClick={() => showDetails(client.id)}
+                  className="bg-gray-200 focus:bg-slate-300 pt-4 hover:cursor-pointer hover:bg-slate-200 flex items-center  pl-8"
+                >
+                  <p className="font-semibold">{client.name}</p>
                 </div>
-                <p className="inline-flex gap-4"><span className="font-semibold">NAME:</span>ADMIN 1</p>
-                <p className="inline-flex gap-4"><span className="font-semibold">ADDRESS:</span>USA-NEW YORK CITY 21ST</p>
-                <button className="border-2 px-4 py-2 text-[14px] border-[#07425b] rounded-lg hover:bg-[#07425b16] focus:border-0 focus:outline-none focus:ring-2 focus:ring-green-200 focus:ring-inherit text-[#07425b]">Copy Info</button>
-            </div>
-            <div className="w-full flex md:flex-row flex-col mx-auto justify-center gap-6">
-                {/* Balance section */}
-                <div className="bg-white basis-1/3 shadow-md shadow-slate-200 rounded-md p-6">
-                    <p className="text-center text-[#07425b] font-semibold">ACCOUNT BALANCE</p>
-                    <h4 className="text-center font-semibold">53043 USD</h4>
-                </div>
-                <div className="bg-white basis-1/2 shadow-md rounded-md shadow-slate-200 p-6 space-y-12">
-                    <div className="w-3/4 ml-4">
-                        <p className="text-[#07425b] font-semibold">TOTAL LENT</p>
-                        <h4 className="font-semibold">53043 USD</h4>
-                    </div>
-                    <div className="w-3/4 ml-4">
-                        <p className="text-[#07425b] font-semibold">TOTAL LOAN</p>
-                        <h4 className="font-semibold">543 USD</h4>
-                    </div>
-                </div>
-            </div>
+              );
+            })}
+          </div>
         </div>
-    )
-}
-export default Admin
+        <div className="basis-3/4 border-2 border-slate-100 px-10 lg:px-14 ">
+          <div className=" w-4/5 ">
+            <div className="w-full flex md:justify-between flex-col justify-start py-8">
+              <div className="lg:basis-1/2 w-full">
+                <h4>Profile</h4>
+                <div className="w-full flex flex-col items-center gap-8">
+                  <div className="w-20 h-20 rounded-full flex items-center justify-center shadow-md">
+                    <img
+                      src={data.imgUrl}
+                      alt="profile img"
+                      width={60}
+                      className="rounded-full object-cover w-full h-full"
+                    />
+                  </div>
+                  <div className="flex justify-between w-full items-center">
+                    <div className="flex flex-col">
+                      <span className="font-semibold inline-flex gap-2">
+                        Name:
+                        <span className="font-medium">{data.name}</span>
+                      </span>
+                      <span className="font-semibold inline-flex gap-2">
+                        Address:
+                        <span className="font-medium">{data.location}</span>
+                      </span>
+                    </div>
+                  </div>
+                </div>
+                <p className="gap-4 flex">
+                  <span className="font-semibold">TOTAL BALANCE:</span>
+                  {data.amount}
+                </p>
+                <p className="gap-4 flex">
+                  <span className="font-semibold">TOTAL LENT:</span>
+                  {data.lent}
+                </p>
+                <p className="gap-4 flex">
+                  <span className="font-semibold">TOTAL LOAN:</span>
+                  {data.loan}
+                </p>
+              </div>
+              <div>
+                <p className="gap-4 flex">
+                  <span className="font-semibold">CLIENT INFO:</span>
+                  {data.loan}
+                </p>
+                <p className="gap-4 flex">
+                  <span className="font-semibold">CLIENT EMAIL:</span>
+                  {data.email}
+                </p>
+                <p className="gap-4 flex">
+                  <span className="font-semibold">CLIENT AGE:</span>
+                  {data.age}
+                </p>
+                <p className="gap-4 flex">
+                  <span className="font-semibold">CLIENT GENDER:</span>
+                  {data.gender}
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  );
+};
+export default Admin;

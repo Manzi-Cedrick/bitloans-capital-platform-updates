@@ -14,10 +14,10 @@ import Terms from './components/Terms';
 import How from './components/How';
 import Borrow from './components/Borrow';
 import Lend from './components/Lend';
-import Clients from './pages/Clients';
-import Admin from './pages/Admin';
 import Teams from './pages/Teams';
 import Career from './pages/Career';
+import Client from './pages/Client';
+import Admin from './pages/Admin';
 
 function App() {
   return (
@@ -36,7 +36,7 @@ function App() {
           <Route exact path="/how" component={How} />
           <Route exact path="/borrow" component={Borrow} />
           <Route exact path="/lend" component={Lend} />
-          <Route exact path="/clients" component={Clients} />
+          <Route exact path="/client" component={Client} />
           <Route exact path="/admin" component={Admin} />
           <Route exact path="/team" component={Teams} />
           <Route exact path="/career" component={Career} />
