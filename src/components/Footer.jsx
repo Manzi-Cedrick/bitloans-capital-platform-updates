@@ -87,7 +87,7 @@ export default function Footer() {
                                     <a href="/admin" className="text-reset">Admin</a>
                                 </p>
                                 <p>
-                                    <a href="/clients" className="text-reset">Client</a>
+                                    <a href="/client" className="text-reset">Client</a>
                                 </p>
                             </div>
                             <div className="col-md-4 col-lg-3 col-xl-3 mx-auto mb-md-0 mb-4">
